@@ -1,0 +1,7 @@
+{
+  "name": "ecosystem.bible",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
