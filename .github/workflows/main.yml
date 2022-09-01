@@ -8,6 +8,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install Ionic CLI
+      run: npm install -g @ionic/cli
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: ionic build
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -16,4 +29,4 @@ jobs:
         aws-region: us-east-2
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 sync ./ s3://dev.ecosystem.bible --delete
+      run: aws s3 sync build/ s3://dev.ecosystem.bible --delete
